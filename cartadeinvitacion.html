@@ -256,6 +256,19 @@
             width: 80%;
         }
 
+        .event-date-badge {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--gold-light);
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid var(--gold-main);
+            padding: 6px 18px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
         .countdown-title {
             font-family: 'Cinzel', serif;
             font-size: 0.95rem;
@@ -522,7 +535,8 @@
 
             <div class="divider"></div>
 
-            <!-- Countdown Timer Block -->
+            <!-- Event Date & Countdown Timer Block -->
+            <div class="event-date-badge">📅 Sábado, 26 de Diciembre de 2026 - 12:00 PM</div>
             <div class="countdown-title">⏳ Cuenta Regresiva para la Gran Noche</div>
             <div class="countdown-grid">
                 <div class="time-card">
@@ -572,11 +586,6 @@
                         </select>
                     </div>
 
-                    <div class="form-group">
-                        <label for="acompanantes">Número de acompañantes:</label>
-                        <input type="number" id="acompanantes" name="acompanantes" min="0" max="5" value="0">
-                    </div>
-
                     <button type="submit" class="btn-submit">Confirmar Registro</button>
                 </form>
 
@@ -585,7 +594,8 @@
         </div>
     </div>
 
-    <audio id="bgMusic" loop preload="auto">
+    <!-- Audio sin el atributo 'loop' para que se detenga al terminar la canción -->
+    <audio id="bgMusic" preload="auto">
         <source src="Safe And Sound.mp3" type="audio/mpeg">
     </audio>
 
@@ -670,7 +680,7 @@
                 colors: ['#d4af37', '#fcf6ba', '#aa771c', '#ffffff']
             });
 
-            // 3. Play audio automatically on click trigger
+            // 3. Play audio ONLY upon opening the envelope
             audio.play().then(() => {
                 musicBtn.classList.add('playing');
                 musicBtn.innerText = '🔊';
@@ -699,6 +709,29 @@
                 musicBtn.innerText = '🎵';
             }
         }
+
+        // EVENTO 1: Desactivar música al finalizar la canción
+        audio.addEventListener('ended', () => {
+            musicBtn.classList.remove('playing');
+            musicBtn.innerText = '🎵';
+        });
+
+        // EVENTO 2: Pausar música cuando el usuario sale del navegador o cambia de pestaña
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden && !audio.paused) {
+                audio.pause();
+                musicBtn.classList.remove('playing');
+                musicBtn.innerText = '🎵';
+            }
+        });
+
+        window.addEventListener('blur', () => {
+            if (!audio.paused) {
+                audio.pause();
+                musicBtn.classList.remove('playing');
+                musicBtn.innerText = '🎵';
+            }
+        });
 
         const targetDate = new Date("2026-12-26T12:00:00").getTime();
 
@@ -730,7 +763,6 @@
             const payload = {
                 nombre: document.getElementById('nombre').value,
                 asistencia: document.getElementById('asistencia').value,
-                acompanantes: document.getElementById('acompanantes').value,
                 fecha_registro: new Date().toLocaleString("es-PE")
             };
 
