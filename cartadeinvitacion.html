@@ -771,7 +771,7 @@
             mensaje.innerText = 'Enviando confirmación...';
 
             try {
-                const response = await fetch('https://n8n.polirc.edu.pe/webhook/asistencia-promo', {
+                const response = await fetch('https://webhook.polirc.edu.pe/webhook/asistencia-promo', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
