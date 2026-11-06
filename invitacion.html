@@ -165,6 +165,7 @@
             align-items: center;
         }
 
+        /* INSIGNIA EN LA PORTADA DEL SOBRE */
         .envelope-insignia {
             width: 48px;
             height: auto;
@@ -236,38 +237,6 @@
             display: block;
             opacity: 1;
             transform: translateY(0) scale(1);
-        }
-
-        .card-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .card-insignia {
-            width: 95px;
-            height: auto;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.7));
-            animation: insigniaFloat 4s ease-in-out infinite;
-            transition: transform 0.4s ease, filter 0.4s ease;
-            cursor: pointer;
-        }
-
-        .card-insignia:hover {
-            transform: scale(1.12) rotate(2deg);
-            filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.95));
-        }
-
-        @keyframes insigniaFloat {
-            0%, 100% {
-                transform: translateY(0);
-                filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.6));
-            }
-            50% {
-                transform: translateY(-8px);
-                filter: drop-shadow(0 0 22px rgba(212, 175, 55, 0.85));
-            }
         }
 
         .card-header h1 {
@@ -602,7 +571,6 @@
             .envelope-container { height: 280px; }
             .wax-seal { top: 120px; width: 66px; height: 66px; }
             .students-grid { grid-template-columns: 1fr; }
-            .card-insignia { width: 75px; }
             .envelope-insignia { width: 40px; }
         }
     </style>
@@ -612,7 +580,7 @@
     <canvas id="particleCanvas"></canvas>
 
     <div class="stage-wrapper">
-        <!-- VISTA DEL SOBRE (CON INSIGNIA DE GITHUB EN LA PORTADA) -->
+        <!-- VISTA DEL SOBRE: LA IMAGEN ESTÁ AQUÍ Y CARGA CON EL NOMBRE 'insignia.png' -->
         <div class="envelope-container" id="envelope" onclick="openEnvelope()">
             <div class="envelope-body">
                 <div class="envelope-flap" id="flap"></div>
@@ -620,11 +588,8 @@
                     <span class="seal-icon">🎓</span>
                 </div>
                 <div class="envelope-text">
-                    <!-- ENLACE DIRECTO A TU REPOSITORIO DE GITHUB -->
-                    <img src="https://raw.githubusercontent.com/DGandher/promocionINV/main/insignia.png" 
-                         onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Escudo_del_Politecnico_Regional_del_Centro.png/480px-Escudo_del_Politecnico_Regional_del_Centro.png';" 
-                         alt="Insignia Colegio" 
-                         class="envelope-insignia">
+                    <!-- RUTA CON NOMBRE DE ARCHIVO LOCAL/RELATIVE PARAGITHUB -->
+                    <img src="insignia.png" alt="Insignia Colegio" class="envelope-insignia">
                     <h3>PROMO ADHYS 2026</h3>
                     <p>Politécnico Regional del Centro</p>
                 </div>
@@ -632,15 +597,9 @@
             <div class="open-hint">✨ Toca para abrir invitación ✨</div>
         </div>
 
-        <!-- CARTA INVITACIÓN (CON INSIGNIA EN EL ENCABEZADO) -->
+        <!-- CARTA INVITACIÓN INTERNA (SIN IMAGEN DE LA INSIGNIA) -->
         <div class="invitation-card" id="invitationCard">
             <div class="card-header">
-                <!-- ENLACE DIRECTO A TU REPOSITORIO DE GITHUB -->
-                <img src="https://raw.githubusercontent.com/DGandher/promocionINV/main/insignia.png" 
-                     onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Escudo_del_Politecnico_Regional_del_Centro.png/480px-Escudo_del_Politecnico_Regional_del_Centro.png';" 
-                     alt="Insignia Politécnico Regional del Centro" 
-                     class="card-insignia" 
-                     onclick="confetti({particleCount: 50, spread: 60, origin: {y: 0.3}})">
                 <h1>PROMO ADHYS 2026</h1>
                 <p class="subtitle">I.E. Politécnico Regional del Centro - 5to M</p>
             </div>
