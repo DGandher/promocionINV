@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Promo Adhys 2026 | Politécnico Regional del Centro</title>
 
-    <!-- Typography: Cinzel for Royal Headers & Montserrat for Body -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -120,11 +120,11 @@
 
         .wax-seal {
             position: absolute;
-            top: 140px;
+            top: 130px;
             left: 50%;
             transform: translateX(-50%);
-            width: 76px;
-            height: 76px;
+            width: 72px;
+            height: 72px;
             background: radial-gradient(circle at 30% 30%, #fcf6ba, #d4af37 40%, #8a6414 90%);
             border-radius: 50%;
             display: flex;
@@ -147,32 +147,62 @@
         }
 
         .seal-icon {
-            font-size: 32px;
+            font-size: 30px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
         }
 
         .envelope-text {
             position: absolute;
-            bottom: 30px;
+            bottom: 15px;
             width: 100%;
             text-align: center;
             font-family: 'Cinzel', serif;
             color: var(--gold-light);
             z-index: 4;
             padding: 0 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ESTILO E EFECTO DINÁMICO DE LA INSIGNIA EN EL SOBRE */
+        .envelope-insignia {
+            width: 48px;
+            height: auto;
+            margin-bottom: 6px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.75));
+            object-fit: contain;
+            animation: insigniaFloat 3.5s ease-in-out infinite;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .envelope-container:hover .envelope-insignia {
+            transform: scale(1.12);
+            filter: drop-shadow(0 0 18px rgba(212, 175, 55, 1));
+        }
+
+        @keyframes insigniaFloat {
+            0%, 100% {
+                transform: translateY(0);
+                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+            }
+            50% {
+                transform: translateY(-5px);
+                filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.95));
+            }
         }
 
         .envelope-text h3 {
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             letter-spacing: 3px;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .envelope-text p {
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             color: var(--text-muted);
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -220,39 +250,6 @@
             display: block;
             opacity: 1;
             transform: translateY(0) scale(1);
-        }
-
-        /* --- INSIGNIA DINÁMICA ÚNICAMENTE EN LA CARTA --- */
-        .card-header {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .card-insignia {
-            width: 100px;
-            height: auto;
-            margin-bottom: 16px;
-            filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.75));
-            animation: insigniaFloat 4s ease-in-out infinite;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease;
-            cursor: pointer;
-        }
-
-        .card-insignia:hover {
-            transform: scale(1.15) rotate(3deg);
-            filter: drop-shadow(0 0 28px rgba(212, 175, 55, 1));
-        }
-
-        @keyframes insigniaFloat {
-            0%, 100% {
-                transform: translateY(0) rotate(0deg);
-                filter: drop-shadow(0 0 14px rgba(212, 175, 55, 0.6));
-            }
-            50% {
-                transform: translateY(-10px) rotate(-1deg);
-                filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.9));
-            }
         }
 
         .card-header h1 {
@@ -585,9 +582,7 @@
             .countdown-grid { gap: 8px; }
             .time-value { font-size: 1.3rem; }
             .envelope-container { height: 280px; }
-            .wax-seal { top: 120px; width: 66px; height: 66px; }
-            .students-grid { grid-template-columns: 1fr; }
-            .card-insignia { width: 80px; }
+            .envelope-insignia { width: 40px; }
         }
     </style>
 </head>
@@ -596,7 +591,7 @@
     <canvas id="particleCanvas"></canvas>
 
     <div class="stage-wrapper">
-        <!-- VISTA DEL SOBRE (SIN INSIGNIA) -->
+        <!-- VISTA DEL SOBRE INICIAL (AQUÍ ESTÁ LA INSIGNIA) -->
         <div class="envelope-container" id="envelope" onclick="openEnvelope()">
             <div class="envelope-body">
                 <div class="envelope-flap" id="flap"></div>
@@ -604,6 +599,8 @@
                     <span class="seal-icon">🎓</span>
                 </div>
                 <div class="envelope-text">
+                    <!-- INSIGNIA ANIMADA DINÁMICAMENTE EN LA PORTADA -->
+                    <img src="insignia.png" alt="Insignia Politécnico Regional del Centro" class="envelope-insignia">
                     <h3>PROMO ADHYS 2026</h3>
                     <p>Politécnico Regional del Centro</p>
                 </div>
@@ -611,14 +608,9 @@
             <div class="open-hint">✨ Toca para abrir invitación ✨</div>
         </div>
 
-        <!-- CARTA INVITACIÓN (LA INSIGNIA DINÁMICA SE UBICA AQUÍ EN EL ENCABEZADO) -->
+        <!-- CARTA DESPLEGADA -->
         <div class="invitation-card" id="invitationCard">
             <div class="card-header">
-                <!-- INSIGNIA DINÁMICA CON ANIMACIÓN FLOTANTE Y CONFETI AL HACER CLIC -->
-                <img src="insignia.png" 
-                     alt="Insignia Politécnico Regional del Centro" 
-                     class="card-insignia" 
-                     onclick="confetti({particleCount: 60, spread: 70, origin: {y: 0.35}})">
                 <h1>PROMO ADHYS 2026</h1>
                 <p class="subtitle">I.E. Politécnico Regional del Centro - 5to M</p>
             </div>
