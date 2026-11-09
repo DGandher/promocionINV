@@ -108,7 +108,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 180px;
+            height: 150px;
             background: linear-gradient(180deg, #172d50 0%, #0c1a2f 100%);
             clip-path: polygon(0 0, 50% 100%, 100% 0);
             transform-origin: top center;
@@ -120,11 +120,11 @@
 
         .wax-seal {
             position: absolute;
-            top: 130px;
+            top: 110px;
             left: 50%;
             transform: translateX(-50%);
-            width: 72px;
-            height: 72px;
+            width: 64px;
+            height: 64px;
             background: radial-gradient(circle at 30% 30%, #fcf6ba, #d4af37 40%, #8a6414 90%);
             border-radius: 50%;
             display: flex;
@@ -147,13 +147,13 @@
         }
 
         .seal-icon {
-            font-size: 30px;
+            font-size: 26px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
         }
 
         .envelope-text {
             position: absolute;
-            bottom: 12px;
+            bottom: 25px;
             width: 100%;
             text-align: center;
             font-family: 'Cinzel', serif;
@@ -165,20 +165,20 @@
             align-items: center;
         }
 
-        /* ESTILO E EFECTO DE LA INSIGNIA EN EL SOBRE DE GITHUB */
+        /* ESTILO E EFECTO DE LA INSIGNIA EN EL SOBRE */
         .envelope-insignia {
-            width: 50px;
+            width: 55px;
             height: auto;
-            margin-bottom: 4px;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
+            margin-bottom: 8px;
+            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.85));
             object-fit: contain;
             animation: insigniaFloat 3.5s ease-in-out infinite;
             transition: transform 0.3s ease, filter 0.3s ease;
         }
 
         .envelope-container:hover .envelope-insignia {
-            transform: scale(1.12);
-            filter: drop-shadow(0 0 18px rgba(212, 175, 55, 1));
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 22px rgba(212, 175, 55, 1));
         }
 
         @keyframes insigniaFloat {
@@ -187,22 +187,22 @@
                 filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
             }
             50% {
-                transform: translateY(-5px);
-                filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.95));
+                transform: translateY(-6px);
+                filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.95));
             }
         }
 
         .envelope-text h3 {
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             letter-spacing: 3px;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .envelope-text p {
-            font-size: 0.72rem;
+            font-size: 0.75rem;
             color: var(--text-muted);
             letter-spacing: 1.5px;
             text-transform: uppercase;
@@ -582,7 +582,9 @@
             .countdown-grid { gap: 8px; }
             .time-value { font-size: 1.3rem; }
             .envelope-container { height: 280px; }
-            .envelope-insignia { width: 42px; }
+            .envelope-insignia { width: 45px; }
+            .wax-seal { top: 95px; width: 54px; height: 54px; }
+            .seal-icon { font-size: 22px; }
         }
     </style>
 </head>
@@ -591,7 +593,7 @@
     <canvas id="particleCanvas"></canvas>
 
     <div class="stage-wrapper">
-        <!-- VISTA DEL SOBRE INICIAL (AQUÍ ESTÁ LA INSIGNIA CARGANDO DESDE GITHUB) -->
+        <!-- VISTA DEL SOBRE CON INSIGNIA VISIBLE -->
         <div class="envelope-container" id="envelope" onclick="openEnvelope()">
             <div class="envelope-body">
                 <div class="envelope-flap" id="flap"></div>
@@ -599,9 +601,9 @@
                     <span class="seal-icon">🎓</span>
                 </div>
                 <div class="envelope-text">
-                    <!-- RUTA DE GITHUB EN LA IMAGEN PARA GARANTIZAR VISUALIZACIÓN EN GITHUB PAGES -->
-                    <img src="https://raw.githubusercontent.com/DGandher/promocionINV/main/insignia.png" 
-                         onerror="this.onerror=null; this.src='insignia.png';" 
+                    <!-- INSIGNIA CON DUAL FALLBACK (LOCAL Y RAW DE GITHUB) -->
+                    <img src="insignia.png" 
+                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/DGandher/promocionINV/main/insignia.png';" 
                          alt="Insignia Politécnico Regional del Centro" 
                          class="envelope-insignia">
                     <h3>PROMO ADHYS 2026</h3>
@@ -611,7 +613,7 @@
             <div class="open-hint">✨ Toca para abrir invitación ✨</div>
         </div>
 
-        <!-- CARTA DESPLEGADA (SIN INSIGNIA) -->
+        <!-- CARTA DESPLEGADA -->
         <div class="invitation-card" id="invitationCard">
             <div class="card-header">
                 <h1>PROMO ADHYS 2026</h1>
