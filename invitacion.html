@@ -153,7 +153,7 @@
 
         .envelope-text {
             position: absolute;
-            bottom: 15px;
+            bottom: 12px;
             width: 100%;
             text-align: center;
             font-family: 'Cinzel', serif;
@@ -165,12 +165,12 @@
             align-items: center;
         }
 
-        /* ESTILO E EFECTO DINÁMICO DE LA INSIGNIA EN EL SOBRE */
+        /* ESTILO E EFECTO DE LA INSIGNIA EN EL SOBRE DE GITHUB */
         .envelope-insignia {
-            width: 48px;
+            width: 50px;
             height: auto;
-            margin-bottom: 6px;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.75));
+            margin-bottom: 4px;
+            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
             object-fit: contain;
             animation: insigniaFloat 3.5s ease-in-out infinite;
             transition: transform 0.3s ease, filter 0.3s ease;
@@ -195,7 +195,7 @@
         .envelope-text h3 {
             font-size: 1.05rem;
             letter-spacing: 3px;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -582,7 +582,7 @@
             .countdown-grid { gap: 8px; }
             .time-value { font-size: 1.3rem; }
             .envelope-container { height: 280px; }
-            .envelope-insignia { width: 40px; }
+            .envelope-insignia { width: 42px; }
         }
     </style>
 </head>
@@ -591,7 +591,7 @@
     <canvas id="particleCanvas"></canvas>
 
     <div class="stage-wrapper">
-        <!-- VISTA DEL SOBRE INICIAL (AQUÍ ESTÁ LA INSIGNIA) -->
+        <!-- VISTA DEL SOBRE INICIAL (AQUÍ ESTÁ LA INSIGNIA CARGANDO DESDE GITHUB) -->
         <div class="envelope-container" id="envelope" onclick="openEnvelope()">
             <div class="envelope-body">
                 <div class="envelope-flap" id="flap"></div>
@@ -599,8 +599,11 @@
                     <span class="seal-icon">🎓</span>
                 </div>
                 <div class="envelope-text">
-                    <!-- INSIGNIA ANIMADA DINÁMICAMENTE EN LA PORTADA -->
-                    <img src="insignia.png" alt="Insignia Politécnico Regional del Centro" class="envelope-insignia">
+                    <!-- RUTA DE GITHUB EN LA IMAGEN PARA GARANTIZAR VISUALIZACIÓN EN GITHUB PAGES -->
+                    <img src="https://raw.githubusercontent.com/DGandher/promocionINV/main/insignia.png" 
+                         onerror="this.onerror=null; this.src='insignia.png';" 
+                         alt="Insignia Politécnico Regional del Centro" 
+                         class="envelope-insignia">
                     <h3>PROMO ADHYS 2026</h3>
                     <p>Politécnico Regional del Centro</p>
                 </div>
@@ -608,7 +611,7 @@
             <div class="open-hint">✨ Toca para abrir invitación ✨</div>
         </div>
 
-        <!-- CARTA DESPLEGADA -->
+        <!-- CARTA DESPLEGADA (SIN INSIGNIA) -->
         <div class="invitation-card" id="invitationCard">
             <div class="card-header">
                 <h1>PROMO ADHYS 2026</h1>
