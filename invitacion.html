@@ -151,7 +151,7 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
         }
 
-        /* UBICACIÓN PRECISA E INDEPENDIENTE DE LA INSIGNIA */
+        /* UBICACIÓN PRECISA DE LA INSIGNIA EN EL SOBRE */
         .envelope-insignia {
             position: absolute;
             top: 172px;
@@ -594,7 +594,7 @@
     <canvas id="particleCanvas"></canvas>
 
     <div class="stage-wrapper">
-        <!-- VISTA DEL SOBRE CON INSIGNIA TOTALMENTE VISIBLE -->
+        <!-- VISTA DEL SOBRE INICIAL -->
         <div class="envelope-container" id="envelope" onclick="openEnvelope()">
             <div class="envelope-body">
                 <div class="envelope-flap" id="flap"></div>
@@ -602,11 +602,8 @@
                     <span class="seal-icon">🎓</span>
                 </div>
                 
-                <!-- INSIGNIA UBIQADA DIRECTAMENTE SOBRE LA PORTADA -->
-                <img src="insignia.png" 
-                     onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/DGandher/promocionINV/main/insignia.png';" 
-                     alt="Insignia Politécnico Regional del Centro" 
-                     class="envelope-insignia">
+                <!-- NOMBRE DEL ARCHIVO DIRECTO IGUAL QUE EL AUDIO -->
+                <img src="insignia.png" alt="Insignia Politécnico Regional del Centro" class="envelope-insignia">
 
                 <div class="envelope-text">
                     <h3>PROMO ADHYS 2026</h3>
@@ -688,6 +685,7 @@
         </div>
     </div>
 
+    <!-- AUDIO VINCULADO DE FORMA DIRECTA -->
     <audio id="bgMusic" preload="auto">
         <source src="cuando Pienses En Volver.mp3" type="audio/mpeg">
     </audio>
@@ -697,7 +695,6 @@
     <script>
         const listaEstudiantes = [
             "ALIAGA JUSTINIANO YOSIMAR FERNADO",
-            "BALTAZAR DE LA CRUZ, YURI",
             "CAPCHA TACZA, LEONARDO DANIEL",
             "CIPRIANO CERIN, JESUS ANDRES",
             "GARCIA SATO, JHOHAN KEISHIRO",
@@ -705,7 +702,6 @@
             "LAYME TAPARA, JHEAN PIERRE",
             "LAZARO DEUDOR, ADRIAN ROGER",
             "LIZARRAGA ATENCIO, HENRY",
-            "LLACUA CHILENO, YOSHUA WILLIAN",
             "LOILO ANTONIO, DIEGO MANUEL",
             "MACHUCA SOTO BENJAMIN",
             "MAYHUA ANGULO, FERNANDO ANDRE",
@@ -718,7 +714,6 @@
             "PILLCO OTAIRO, KEVIN DANIEL",
             "POMA YARANGA, ANDHER ALFREDO",
             "PUMATANCA DIAZ, PAOLO DANIEL",
-            "QUINCHO HUAYTA, BRANDY KENIL",
             "RAMIREZ ALBERTO, ROBERT REYNALDO",
             "SEDANO QUISPE, FRANCO",
             "TITO CONDORI, EMERSON ARIEL",
