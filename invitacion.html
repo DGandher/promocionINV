@@ -108,7 +108,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 150px;
+            height: 140px;
             background: linear-gradient(180deg, #172d50 0%, #0c1a2f 100%);
             clip-path: polygon(0 0, 50% 100%, 100% 0);
             transform-origin: top center;
@@ -120,11 +120,11 @@
 
         .wax-seal {
             position: absolute;
-            top: 110px;
+            top: 100px;
             left: 50%;
             transform: translateX(-50%);
-            width: 64px;
-            height: 64px;
+            width: 60px;
+            height: 60px;
             background: radial-gradient(circle at 30% 30%, #fcf6ba, #d4af37 40%, #8a6414 90%);
             border-radius: 50%;
             display: flex;
@@ -147,49 +147,50 @@
         }
 
         .seal-icon {
-            font-size: 26px;
+            font-size: 24px;
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+        }
+
+        /* UBICACIÓN PRECISA E INDEPENDIENTE DE LA INSIGNIA */
+        .envelope-insignia {
+            position: absolute;
+            top: 172px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 48px;
+            height: auto;
+            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.9));
+            object-fit: contain;
+            z-index: 7;
+            animation: insigniaFloat 3.5s ease-in-out infinite;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .envelope-container:hover .envelope-insignia {
+            transform: translateX(-50%) scale(1.15);
+            filter: drop-shadow(0 0 22px rgba(212, 175, 55, 1));
+        }
+
+        @keyframes insigniaFloat {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+            }
+            50% {
+                transform: translateX(-50%) translateY(-5px);
+                filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.95));
+            }
         }
 
         .envelope-text {
             position: absolute;
-            bottom: 25px;
+            bottom: 20px;
             width: 100%;
             text-align: center;
             font-family: 'Cinzel', serif;
             color: var(--gold-light);
             z-index: 4;
             padding: 0 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* ESTILO E EFECTO DE LA INSIGNIA EN EL SOBRE */
-        .envelope-insignia {
-            width: 55px;
-            height: auto;
-            margin-bottom: 8px;
-            filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.85));
-            object-fit: contain;
-            animation: insigniaFloat 3.5s ease-in-out infinite;
-            transition: transform 0.3s ease, filter 0.3s ease;
-        }
-
-        .envelope-container:hover .envelope-insignia {
-            transform: scale(1.15);
-            filter: drop-shadow(0 0 22px rgba(212, 175, 55, 1));
-        }
-
-        @keyframes insigniaFloat {
-            0%, 100% {
-                transform: translateY(0);
-                filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
-            }
-            50% {
-                transform: translateY(-6px);
-                filter: drop-shadow(0 0 18px rgba(212, 175, 55, 0.95));
-            }
         }
 
         .envelope-text h3 {
@@ -582,9 +583,9 @@
             .countdown-grid { gap: 8px; }
             .time-value { font-size: 1.3rem; }
             .envelope-container { height: 280px; }
-            .envelope-insignia { width: 45px; }
-            .wax-seal { top: 95px; width: 54px; height: 54px; }
-            .seal-icon { font-size: 22px; }
+            .envelope-insignia { top: 145px; width: 42px; }
+            .wax-seal { top: 85px; width: 52px; height: 52px; }
+            .seal-icon { font-size: 20px; }
         }
     </style>
 </head>
@@ -593,19 +594,21 @@
     <canvas id="particleCanvas"></canvas>
 
     <div class="stage-wrapper">
-        <!-- VISTA DEL SOBRE CON INSIGNIA VISIBLE -->
+        <!-- VISTA DEL SOBRE CON INSIGNIA TOTALMENTE VISIBLE -->
         <div class="envelope-container" id="envelope" onclick="openEnvelope()">
             <div class="envelope-body">
                 <div class="envelope-flap" id="flap"></div>
                 <div class="wax-seal" id="waxSeal">
                     <span class="seal-icon">🎓</span>
                 </div>
+                
+                <!-- INSIGNIA UBIQADA DIRECTAMENTE SOBRE LA PORTADA -->
+                <img src="insignia.png" 
+                     onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/DGandher/promocionINV/main/insignia.png';" 
+                     alt="Insignia Politécnico Regional del Centro" 
+                     class="envelope-insignia">
+
                 <div class="envelope-text">
-                    <!-- INSIGNIA CON DUAL FALLBACK (LOCAL Y RAW DE GITHUB) -->
-                    <img src="insignia.png" 
-                         onerror="this.onerror=null; this.src='https://raw.githubusercontent.com/DGandher/promocionINV/main/insignia.png';" 
-                         alt="Insignia Politécnico Regional del Centro" 
-                         class="envelope-insignia">
                     <h3>PROMO ADHYS 2026</h3>
                     <p>Politécnico Regional del Centro</p>
                 </div>
@@ -694,6 +697,7 @@
     <script>
         const listaEstudiantes = [
             "ALIAGA JUSTINIANO YOSIMAR FERNADO",
+            "BALTAZAR DE LA CRUZ, YURI",
             "CAPCHA TACZA, LEONARDO DANIEL",
             "CIPRIANO CERIN, JESUS ANDRES",
             "GARCIA SATO, JHOHAN KEISHIRO",
@@ -701,6 +705,7 @@
             "LAYME TAPARA, JHEAN PIERRE",
             "LAZARO DEUDOR, ADRIAN ROGER",
             "LIZARRAGA ATENCIO, HENRY",
+            "LLACUA CHILENO, YOSHUA WILLIAN",
             "LOILO ANTONIO, DIEGO MANUEL",
             "MACHUCA SOTO BENJAMIN",
             "MAYHUA ANGULO, FERNANDO ANDRE",
@@ -713,6 +718,7 @@
             "PILLCO OTAIRO, KEVIN DANIEL",
             "POMA YARANGA, ANDHER ALFREDO",
             "PUMATANCA DIAZ, PAOLO DANIEL",
+            "QUINCHO HUAYTA, BRANDY KENIL",
             "RAMIREZ ALBERTO, ROBERT REYNALDO",
             "SEDANO QUISPE, FRANCO",
             "TITO CONDORI, EMERSON ARIEL",
